@@ -11,6 +11,7 @@ Contents
 * [Chapter Notes](#chapter-notes)
   * [Chapter 1: Why Lisp?](#chapter-1-why-lisp)
   * [Chapter 2: A Tour of the REPL](#chapter-2-a-tour-of-the-repl)
+  * [Chapter 3: A Simple Database](#a-simple-database)
 
 
 Chapter Notes
@@ -51,8 +52,8 @@ Here are some additional notes:
     implementations. Clozure CL should not be confused with Clojure.
     Clozure CL is a compiler implementation for Common Lisp whereas
     Clojure is a separate dialect of Lisp meant for the Java platform.
-    
-    
+
+
 ### Chapter 2: A Tour of the REPL
 
 I have created a minimal Emacs starter kit named
@@ -66,19 +67,19 @@ Here are some notes form [chapter 2][PCL02] of the book:
   - While reading this chapter, ignore references to *Lisp in a Box*
     because your development environment must be already set up using
     Emacs4CL as mentioned in the previous unit.
-    
+
   - Also, ignore the point about key-sequence `C-c C-q` to insert
     closing parentheses. This functionality has been removed from
     SLIME since the book was written, so that point is obsolete.
     Moreoever, we don't need it because we use Paredit to
     automatically insert closing parentheses.
-    
+
 Here is a recap of Emacs key bindings introduced in this chapter:
 
   - `C-x C-f`: Open a new file in Emacs, e.g., `C-x C-f hello.lisp RET`.
   - `C-x C-s`: Save current buffer to file.
   - `C-x b`: Switch buffer, e.g., `C-x b hello.lisp RET`.
-  
+
 Here is a recap of SLIME key bindings introduced in this chapter:
 
   - `C-c C-c`: Compile the current toplevel form using SLIME.
@@ -88,7 +89,7 @@ Here is a recap of SLIME key bindings introduced in this chapter:
   - `,`: Enter SLIME REPL shortcut command, e.g., `, quit RET`, `, pwd
     RET`, [etc.][slime-shortcuts].
   - `q`: Quit SLIME debugger.
-  
+
 [slime-shortcuts]: https://common-lisp.net/project/slime/doc/html/Shortcuts.html
 
 Here is a recap of Emacs help key bindings introduced in this chapter:
@@ -144,6 +145,77 @@ Here are the code examples written for this chapter:
   - [ex/001-hello.lisp](ex/001-hello.lisp)
   - [ex/002-load.lisp](ex/002-load.lisp)
   - [ex/003-compile.lisp](ex/003-compile.lisp)
+
+
+### Chapter 3: A Simple Database
+
+Here is a recap of some of the important points from [chapter 3][PCL03].
+
+  - Common Lisp provides three distinct kinds of operators:
+    - *functions*
+    - *macros*
+    - *special operators*
+  -   - Common Lisp provides three distinct kinds of operators:
+    - *functions*
+    - *macros*
+    - *special operators*
+  - You can make a list with the `LIST` function, which, appropriately
+    enough, returns a list of its arguments.
+  - A property list (or plist for short) where every other element,
+    starting with the first, is a symbol that describes what the next
+    element in the list is.
+  - The function `GETF` takes a plist and a symbol and returns the value
+    in the plist following the symbol, making a plist a sort of poor
+    man's hash table.
+  - `DEFUN` tells us that this form is defining a new function.
+  - You can use a global variable, `*db*`, which you can define with
+    the `DEFVAR` macro.
+  - You can use the `PUSH` macro to add items to `*db*`. It returns
+    the new value of the variable it's modifying.
+  - The `DOLIST` macro binds each element of a list to a variable in
+    turn.
+  - `FORMAT` takes at least two arguments, the first being the stream
+    where it sends its output; `t` is shorthand for the stream
+    `*standard-output*`.
+  - The call to `FORCE-OUTPUT` is necessary in some implementations to
+    ensure that Lisp doesn't wait for a newline before it prints the
+    prompt.
+  - You can read a single line of text with the aptly named
+    `READ-LINE` function.
+  - The variable `*query-io*` is a global variable that contains the
+    input stream connected to the terminal.
+  - The default behavior of `PARSE-INTEGER` is to signal an error if
+    it can't parse an integer out of the string or if there's any
+    non-numeric junk in the string.
+  - The `OR` macro is similar to the "short-circuiting" `||` in Perl,
+    Python, Java, and C; it takes a series of expressions, evaluates
+    them one at a time, and returns the first non-nil value (or `NIL`
+    if they're all `NIL`).
+  - `Y-OR-N-P` will reprompt the user if they enter something that
+    doesn't start with y, Y, n, or N.
+  - The `LOOP` macro repeatedly executes a body of expressions until
+    it's exited by a call to `RETURN`.
+
+### Chapter N: Title
+
+DO NOT MODIFY THIS. COPY THIS AND MODIFY.
+
+Here are some notes from [chapter N][PCL000] of the book:
+
+  - foo
+
+Here are some additional notes:
+
+  - foo
+
+Here are some additional notes from [CLHS]:
+
+  - foo
+
+Here are the code examples written for this chapter:
+
+  - [.lisp](.lisp)
+
 
 [PCL]: http://www.gigamonkeys.com/book/
 [PCL01]: http://www.gigamonkeys.com/book/introduction-why-lisp.html

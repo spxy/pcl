@@ -1,0 +1,7 @@
+(defvar *db*
+  (list (list :a "apple" :b "ball" :c "cat")
+        (list :a "alice" :b "bob" :c "carol")))
+
+(with-open-file (out "/tmp/items.db" :direction :output :if-exists :supersede)
+  (with-standard-io-syntax
+    (print *db* out)))
